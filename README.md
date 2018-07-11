@@ -1,7 +1,8 @@
 # elasticsearch-dynamic-synonym
 An Elasticsearch token filter sopport load dynamic synonym.
 
-Elasticsearch自带了一个synonym同义词插件，但是该插件只能使用文件或在分析器中静态地配置同义词，如果需要添加或修改，需要修改配置文件和重启，使用方式不够友好。通过学习Elasticsearch的synonym代码，自研了一个可动态维护同义词的插件，并以运用于生产环境。
+Elasticsearch自带了一个synonym同义词插件，但是该插件只能使用文件或在分析器中静态地配置同义词，如果需要添加或修改，需要重启。
+通过对开源代码的研究，改写了一个可以动态更新并用于5.5.9版本的插件，大部分参考了两个插件的代码。
 
 # Elasticsearch自带的SynonymTokenFilter
 Elasticsearch自带的同义词过滤器支持在分析器配置（使用synonyms参数）和文件中配置（使用synonyms_path参数）同义词，配置方式如下：
@@ -41,7 +42,6 @@ Elasticsearch自带的同义词过滤器支持在分析器配置（使用synonym
     Nike, 耐克, naike
 
 # DynamicSynonymTokenFilter
-## 实现方式
 - DynamicSynonymTokenFilter参考了SynonymTokenFilter的方式，但又予以简化，使用一个HashMap来保存同义词之间的转换关系；
 - DynamicSynonymTokenFilter只支持Solr synonyms，同时也支持expand和ignore_case参数的配置；
 - DynamicSynonymTokenFilter通过数据库来管理同义词的配置，并轮询数据库（通过version字段判断是否存在规则变化）实现同义词的动态管理；
@@ -246,7 +246,7 @@ Elasticsearch创建索引时配置分析器和过滤器：
 # Conclusion
 - 通过学习Elasticsearch源码自己实现(抄)了一个同义词插件，通过同义词的配置可以实现同义词规则的增删改的动态更新；
 - 同义词的动态更新时原本在索引中已存在的数据不受同义词更新动态的影响，因此在使用时需要考虑该问题。
-- 在修改大佬的代码时
+- 在修改大佬的代码时，部分代码因时间问题没全改，token analyzer 只支持几种，在代码中写死了，需要后续修改
 
 # 参考资料
 - [Using Synonyms](https://www.elastic.co/guide/en/elasticsearch/guide/current/using-synonyms.html)
