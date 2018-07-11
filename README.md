@@ -49,15 +49,15 @@ Elasticsearch自带的同义词过滤器支持在分析器配置（使用synonym
 ## 安装
 1.下载插件源码
 
-    git clone git@github.com:ginobefun/elasticsearch-dynamic-synonym.git
+    git@github.com:DragonZhang123/dynamic-synonym.git
 
 2.使用maven编译插件
 
     mvn clean install -DskipTests
    
-3.在ES_HOME/plugin目录新建dynamic-synonym目录，并将target/releases/elasticsearch-dynamic-synonym-\<version\>.zip文件解压到该目录
+3.在ES_HOME/plugin目录新建dynamic-synonym目录，并将target/releases/elasticsearch-dynamic-synonym-5.6.9.zip文件解压到该目录
 
-4.在MySQL中创建Elasticsearch同义词数据库并创建用户
+4.在MySQL中创建Elasticsearch同义词数据库并创建用户（懒得写了，把大佬demo的贴过来）
 
     create database elasticsearch;
     DROP TABLE IF EXISTS `dynamic_synonym_rule`;
@@ -80,7 +80,8 @@ Elasticsearch自带的同义词过滤器支持在分析器配置（使用synonym
 
 5.重启Elasticsearch
 
-## 配置
+## 配置 
+（还是用的大佬的demo，大佬的地址见参考）
 
 Elasticsearch创建索引时配置分析器和过滤器：
 
@@ -242,11 +243,14 @@ Elasticsearch创建索引时配置分析器和过滤器：
       }
     }
 
-# 总结与后续改进
-- 通过学习Elasticsearch源码自己实现了一个简易版的同义词插件，通过同义词的配置可以实现同义词规则的增删改的动态更新；
-- 需要注意的是，同义词的动态更新存在一个很重要的问题是原本在索引中已存在的数据不受同义词更新动态的影响，因此在使用时需要考虑是否可以容忍该问题，一个通常的做法是在某个时刻集中管理同义词，更新后执行索引重建动作；
-- 另外该插件目前存在一个问题，就是同义词的映射关系在内存中是一个全局数据，因此如果有多个不同的同义词过滤器则会存在问题，代码初始化时以第一个成功初始化的过滤器生成的映射关系为准，这个后续版本考虑改进。
+# Conclusion
+- 通过学习Elasticsearch源码自己实现(抄)了一个同义词插件，通过同义词的配置可以实现同义词规则的增删改的动态更新；
+- 同义词的动态更新时原本在索引中已存在的数据不受同义词更新动态的影响，因此在使用时需要考虑该问题。
+- 在修改大佬的代码时
 
 # 参考资料
 - [Using Synonyms](https://www.elastic.co/guide/en/elasticsearch/guide/current/using-synonyms.html)
 - [Synonym Token Filter](https://www.elastic.co/guide/en/elasticsearch/reference/2.3/analysis-synonym-tokenfilter.html)
+- [比这个改（抄）的](https://github.com/ginobefun/elasticsearch-dynamic-synonym)
+- [参考（抄）了一下](https://github.com/bells/elasticsearch-analysis-dynamic-synonym)
+
