@@ -37,7 +37,7 @@ public class DynamicSynonymPlugin extends Plugin implements AnalysisPlugin {
     public Map<String, AnalysisModule.AnalysisProvider<TokenFilterFactory>> getTokenFilters() {
         Map<String, AnalysisModule.AnalysisProvider<TokenFilterFactory>> tokenFilters = new HashMap<>();
 
-        tokenFilters.put(PLUGIN_NAME, requiresAnalysisSettings((is, env, name, settings) -> new DynamicSynonymTokenFilterFactory(is, env, name, settings)));
+        tokenFilters.put(PLUGIN_NAME, requiresAnalysisSettings(DynamicSynonymTokenFilterFactory::new));
 
         return tokenFilters;
     }
