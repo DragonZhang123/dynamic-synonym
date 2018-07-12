@@ -25,7 +25,9 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by zhangguanlong on 2018/7/10.
+ *
+ * @author zhangguanlong
+ * @date 2018/7/10
  */
 public class SynonymRuleManager {
 
@@ -33,12 +35,7 @@ public class SynonymRuleManager {
 
     private static final int DB_CHECK_URL = 60;
 
-    private static final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1, new ThreadFactory() {
-        @Override
-        public Thread newThread(Runnable r) {
-            return new Thread(r, "monitor-thread");
-        }
-    });
+    private static final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1, r -> new Thread(r, "monitor-thread"));
 
     private static SynonymRuleManager singleton;
 
@@ -87,6 +84,7 @@ public class SynonymRuleManager {
             }
 
             LOGGER.info("Load {} synonym rule succeed!", synonymRuleList.size());
+            //
             LOGGER.info(" synonym rule :" + synonymRuleList.toString());
             return currentMaxVersion;
         } catch (Exception e) {

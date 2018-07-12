@@ -25,7 +25,9 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * Created by ginozhang on 2017/1/12.
+ *
+ * @author ginozhang
+ * @date 2017/1/12
  * SEE: org.apache.lucene.analysis.synonym.SolrSynonymParser
  */
 public class SimpleSynonymMap {
@@ -56,7 +58,7 @@ public class SimpleSynonymMap {
             }
 
             List<String> inputList = new ArrayList<>();
-            String inputStrings[] = split(sides[0], ",");
+            String[] inputStrings = split(sides[0], ",");
             for (int i = 0; i < inputStrings.length; i++) {
                 inputList.addAll(analyze(process(inputStrings[i])));
             }
@@ -75,7 +77,7 @@ public class SimpleSynonymMap {
             }
         } else {
             List<String> inputList = new ArrayList<>();
-            String inputStrings[] = split(line, ",");
+            String[] inputStrings = split(line, ",");
             for (int i = 0; i < inputStrings.length; i++) {
                 inputList.addAll(analyze(process(inputStrings[i])));
             }
@@ -152,7 +154,9 @@ public class SimpleSynonymMap {
             char ch = s.charAt(pos++);
             if (ch == '\\') {
                 sb.append(ch);
-                if (pos >= end) break;  // ERROR, or let it go?
+                if (pos >= end) {
+                    break;  // ERROR, or let it go?
+                }
                 ch = s.charAt(pos++);
             }
 

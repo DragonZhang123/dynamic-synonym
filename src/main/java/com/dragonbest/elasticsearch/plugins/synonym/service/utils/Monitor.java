@@ -19,7 +19,9 @@ import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.logging.ESLoggerFactory;
 
 /**
- * Created by ginozhang on 2017/1/12.
+ *
+ * @author ginozhang
+ * @date 2017/1/12
  */
 public class Monitor implements Runnable {
 

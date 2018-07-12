@@ -19,7 +19,9 @@ import java.util.List;
 
 
 /**
- * Created by zhangguanlong on 2018/7/9.
+ *
+ * @author zhangguanlong
+ * @date 2018/7/9
  */
 public final class JDBCUtils {
 
@@ -62,6 +64,7 @@ public final class JDBCUtils {
 
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
+                // 页面 存在乱码问题
                 list.add(java.net.URLDecoder.decode(rs.getString("rule"),"utf-8"));
             }
         } finally {
