@@ -251,6 +251,6 @@ Elasticsearch创建索引时配置分析器和过滤器：
 # 参考资料
 - [Using Synonyms](https://www.elastic.co/guide/en/elasticsearch/guide/current/using-synonyms.html)
 - [Synonym Token Filter](https://www.elastic.co/guide/en/elasticsearch/reference/2.3/analysis-synonym-tokenfilter.html)
-- [比这个改（抄）的](https://github.com/ginobefun/elasticsearch-dynamic-synonym)
-- [参考（抄）了一下](https://github.com/bells/elasticsearch-analysis-dynamic-synonym)
+- [参考](https://github.com/ginobefun/elasticsearch-dynamic-synonym)
+- [参考](https://github.com/bells/elasticsearch-analysis-dynamic-synonym)
 
